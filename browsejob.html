@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Job Junction",
+      "url": "https://surajsg23.github.io/Job-Portal/",
+      "logo": "../assets/logo.webp",
+      "sameAs": [
+        "https://github.com/SurajSG23/Job-Portal"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Job Junction",
+      "url": "https://surajsg23.github.io/Job-Portal/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://surajsg23.github.io/Job-Portal/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Pilot | Seeker</title>
+    <meta name="description" content="Job seekers: Find jobs, apply, and manage your profile on Job Pilot." />
+    <meta name="keywords" content="seeker, job portal, find jobs, apply, careers, HTML, CSS, JavaScript, Firebase" />
+    <meta name="author" content="Job Pilot Team" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Job Pilot | Seeker" />
+    <meta property="og:description" content="Job seekers: Find jobs, apply, and manage your profile on Job Pilot." />
+    <meta property="og:image" content="../assets/logo.webp" />
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://surajsg23.github.io/Job-Portal/components/seeker.html" /> -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Job Pilot | Seeker" />
+    <meta name="twitter:description"
+        content="Job seekers: Find jobs, apply, and manage your profile on Job Pilot." />
+    <meta name="twitter:image" content="../assets/logo.webp" />
+
+    <!-- For development: -->
+    <link rel="stylesheet" href="../components/seeker.css">
+    <link rel="stylesheet" href="../components/skills.css" />
+
+    <link rel="shortcut icon" href="../assets/favicon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="companies.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* --- NEW NAV BAR LAYOUT STYLES --- */
+
+        /* 1. Logo Image Sizing */
+        .logo {
+            height: 80px;
+            /* Adjust this to match your inspiration's logo height */
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* 2. Head Container (CRITICAL: Enables side-by-side layout) */
+        .headContainer {
+            display: flex;
+            justify-content: space-between;
+            /* Pushes the logo left and the links right */
+            align-items: center;
+            /* Vertically centers the items */
+            max-width: 1200px;
+            /* Optional: Constrain width like your job cards */
+            margin: 0 auto;
+            /* Center the container */
+            padding: 15px 50px;
+            /* Adjust horizontal padding */
+        }
+
+        /* 3. Navigation Links Container */
+        .headlinks {
+            display: flex;
+            /* CRITICAL: Puts all the anchor tags side-by-side */
+            gap: 25px;
+            /* Spacing between the links */
+            /* Center the links vertically inside the nav */
+            align-items: center;
+        }
+
+        /* 4. Individual Link Styling */
+        .headlinks a {
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            /* Add vertical padding for clicking area */
+            transition: color 0.2s ease;
+            /* Reset background and color from your existing dark mode variables for regular links */
+            background: transparent !important;
+            color: var(--text-primary);
+        }
+
+        .headlinks a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* 5. 'Apply' Button Styling (Uses the new class from step 1) */
+        .headlinks .apply-btn {
+            /* The inspiration uses a solid background for the Apply link */
+            background-color: var(--accent-primary) !important;
+            color: #fff !important;
+            /* White text */
+            border-radius: 5px;
+            padding: 8px 15px !important;
+            /* Give it button-like padding */
+            font-weight: 600;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .headlinks .apply-btn:hover {
+            background-color: var(--accent-secondary) !important;
+            transform: scale(1.05);
+        }
+
+        /* --- END OF NEW NAV BAR STYLES --- */
+
+        /* --- Centering the Heading Section --- */
+        .heading {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            /* Center container horizontally and add top margin */
+        }
+
+        .heading h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            /* Ensures text is centered */
+        }
+
+        .heading p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            /* Ensures text is centered */
+        }
+
+
+
+        /* Dark Mode Variables */
+        :root {
+            --bg-primary: #f0f4ff;
+            --bg-secondary: #ffffff;
+            --text-primary: #0965c0;
+            --text-secondary: #475569;
+            --accent-primary: #0A2463;
+            --accent-secondary: #04A87D;
+            --border-color: #d1d5db;
+            --shadow-color: rgba(59, 130, 246, 0.15);
+            --card-bg: linear-gradient(145deg, #e0f2ff, #dbeafe);
+            --card-hover: linear-gradient(145deg, #bfdbfe, #93c5fd);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #FFFFFF;
+            --text-secondary: #cbd5e1;
+            --accent-primary: #0A2463;
+            --accent-secondary: #04A87D;
+            --border-color: #334155;
+            --shadow-color: rgba(96, 165, 250, 0.15);
+            --card-bg: linear-gradient(145deg, #1e293b, #334155);
+            --card-hover: linear-gradient(145deg, #334155, #475569);
+        }
+
+        /* Dark Mode Toggle Button */
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            z-index: 9999;
+            /* Increased z-index to ensure it's always on top */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            visibility: visible !important;
+            /* Force visibility */
+            opacity: 1 !important;
+            /* Force opacity */
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Dark Mode Styles */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Update existing styles with CSS variables */
+        .body2 {
+            background: var(--bg-primary);
+            box-shadow: 0 6px 24px var(--shadow-color);
+        }
+
+        .body2 .heading h2 {
+            color: var(--text-primary);
+        }
+
+        .body2 .heading p {
+            color: var(--text-secondary);
+        }
+
+        .fancy-input,
+        .fancy-select {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .fancy-input:focus,
+        .fancy-select:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background: var(--bg-primary);
+        }
+
+        .job-card {
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .job-card:hover {
+            background: var(--card-hover);
+        }
+
+        .job-card h3 {
+            color: var(--text-primary);
+        }
+
+        .job-card p {
+            color: var(--text-primary);
+        }
+
+        header {
+            background: var(--bg-secondary);
+            border-bottom-color: var(--border-color);
+        }
+
+        .headlinks a,
+        .apply-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-top-color: var(--border-color);
+        }
+
+        /* Rest of your existing styles remain the same but will use CSS variables */
+        /* --- Jobs Section Container --- */
+        .body2 {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .body2 .heading h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .body2 .heading p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .fancy-input,
+        .fancy-select {
+            flex: 1 1 250px;
+            max-width: 320px;
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .fancy-input:focus,
+        .fancy-select:focus {
+            outline: none;
+        }
+
+        .fancy-select {
+            background: var(--bg-secondary) url("data:image/svg+xml,%3Csvg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 1rem center;
+            background-size: 1rem;
+        }
+
+        .fancy-input:hover,
+        .fancy-select:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px var(--shadow-color);
+        }
+
+        @media (max-width: 768px) {
+            .search-filter-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .fancy-input,
+            .fancy-select {
+                max-width: 100%;
+            }
+        }
+
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .jobs-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .jobs-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .job-card {
+            border-radius: 20px;
+            box-shadow: 0 12px 28px var(--shadow-color);
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .job-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .job-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .job-card h3 {
+            margin-top: 10px;
+            font-size: 2rem;
+            font-weight: 1000;
+            margin: 0.8rem 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-card .badge {
+            background: var(--accent-primary);
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .job-card .badge:hover {
+            background: var(--accent-secondary);
+            transform: scale(1.05);
+        }
+
+        .job-card p {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-card button {
+            background: var(--accent-primary);
+            color: #fff;
+            padding: 0.9rem 1.6rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .job-card button:hover {
+            background: var(--accent-secondary);
+            transform: scale(1.08);
+        }
+
+        .jobs-container :hover {
+            text-align: center;
+        }
+
+        /* --- New Simplified Footer Style --- */
+        /* --- New Compact Footer Layout --- */
+        footer {
+            /* CRITICAL: Use Flexbox for layout */
+            display: flex;
+            flex-direction: column;
+            /* Stack items vertically: statement -> icons -> copyright */
+            align-items: center;
+            /* Center all items horizontally */
+            text-align: center;
+
+            background: var(--bg-secondary);
+            /* Inherits from Dark Mode vars */
+            border-top: 1px solid var(--border-color);
+            padding: 30px 0 15px;
+            /* Top, sides, bottom padding */
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        /* 1. Main Statement Text Styling */
+        #footer-statement {
+            margin-bottom: 15px;
+        }
+
+        #footer-statement p {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* 2. Social Icons Container */
+        .social-icons {
+            display: flex;
+            gap: 25px;
+            /* Spacing between the icons */
+            margin-bottom: 15px;
+            /* Space above the copyright line */
+        }
+
+        /* 3. Social Icon Appearance */
+        .social-icons a {
+            color: var(--text-secondary);
+            /* Default icon color */
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-primary);
+            /* Change color on hover (e.g., to purple/blue) */
+            transform: scale(1.1);
+        }
+
+        /* 4. Copyright Text Styling */
+        footer h3 {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            /* Lighter color for copyright */
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <div class="headContainer">
+            <img src="C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/job pilot logo.png" alt="Job Pilot logo" loading="lazy" class="logo" />
+
+            <nav class="headlinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="home.html">Role</a>
+                <a href="login.html" class="apply-btn">Apply</a>
+                <a href="login.html">Saved Jobs</a>
+            </nav>
+        </div>
+    </header>
+    <hr>
+
+    <div class="">
+        <div class="heading">
+            <h2>Jobs In Demand</h2>
+            <p>Most viewed and all-time-top-selling services</p>
+        </div>
+        <div class="search-filter-container">
+            <input type="text" id="searchInput" class="search-bar fancy-input" placeholder=" Search by position..." />
+            <select id="salaryFilter" class="filter-dropdown fancy-select">
+                <option value=""> All Salaries</option>
+                <option value="500">$500+/m</option>
+                <option value="900">$900+/m</option>
+                <option value="1200">$1200+/m</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Jobs Grid -->
+    <div class="jobs-container" id="jobsContainer">
+        <!-- Jobs will be populated by JavaScript -->
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" title="Go to top">↑</button>
+
+    <footer>
+        <div id="footer-statement">
+            <p>Connecting Talent with Opportunity. Your Career Journey Starts Here!</p>
+        </div>
+
+
+
+        <div class="social-icons">
+            <a href="https://github.com/SurajSG23" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.instagram.com/suraj_sg23/" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/suraj-s-g-dhanva-995a23298/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+
+        <h3>&copy; 2025 Job Pilot. All rights are reserved.</h3>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Your existing JavaScript code
+        const jlist = [
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png",
+                position: "Web Developer",
+                salary: "$900-1200/m",
+                type: "Full Time",
+                link: "https://www.google.com/about/careers/applications/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/netflix.webp",
+                position: "Designer",
+                salary: "$700-1100/m",
+                type: "Part Time",
+                link: "https://jobs.netflix.com/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/1724866703chatgpt-logo-with-no-background.png",
+                position: "Open source contributor",
+                salary: "$900-1200/m",
+                type: "Freelancer",
+                link: "https://www.github.careers/careers-home"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/amazon_PNG5.png",
+                position: "Customer Service",
+                salary: "$600-900/m",
+                type: "Full time",
+                link: "https://www.amazon.jobs/en/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/apple-logo-png-index-content-uploads-10.png",
+                position: "Front End Developer",
+                salary: "$700-1400/m",
+                type: "Part Time",
+                link: "https://www.apple.com/careers/in/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/meta_PNG12.png",
+                position: "Designer",
+                salary: "$500-1200/m",
+                type: "Part Time",
+                link: "https://www.metacareers.com/jobs"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/linkedIn_PNG7.png",
+                position: "Human Resource",
+                salary: "$400-900/m",
+                type: "Part Time",
+                link: "https://www.linkedin.com/jobs/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/classic-samsung-logo-png-0.png",
+                position: "Back-end Developer",
+                salary: "$1100-1700/m",
+                type: "Freelancer",
+                link: "https://www.samsung.com/in/about-us/careers/?srsltid=AfmBOooetR8lgJbiBWWHc3NO0CRxOUE-8ornVLq-Q2I4ZnpIXxCHqjOK"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/Udemy-Logo.png",
+                position: "Teacher/Professor",
+                salary: "$500-1200/m",
+                type: "Full time",
+                link: "https://about.udemy.com/careers/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/1724866703chatgpt-logo-with-no-background.png",
+                position: "AI Engineer",
+                salary: "$1200-1600/m",
+                type: "Part Time",
+                link: "https://openai.com/careers/"
+            },
+            {
+                img: "C:/Users/Abhay Kushwaha/OneDrive/Desktop/Shoolini/project/browsejob logo/Insta-Logo-PNG-Free-Download.png",
+                position: "Content Creator",
+                salary: "$200-600/m",
+                type: "Freelancer",
+                link: "https://about.instagram.com/about-us/careers"
+            },
+        ];
+
+        const jobsContainer = document.getElementById("jobsContainer");
+
+        function renderJobs(jobs) {
+            jobsContainer.innerHTML = '';
+            for (const job of jobs) {
+                jobsContainer.innerHTML += `
+                <div class="job-card">
+                    <a href="${job.link}" class="job-links" target="_blank">
+                        <img src="${job.img}" alt="${job.position}" style="width: 200px; height: 200px;">
+                        <h3>${job.position}</h3>
+                        <p>${job.salary}</p>
+                        <div class="badge">
+                            <p>${job.type}</p>
+                        </div>
+                    </a>
+                    <button class="save-job-btn" data-job='${JSON.stringify(job)}' style="
+                        background-color: var(--accent-primary);
+                        color: #fff;
+                        border: none;
+                        border-radius: 4px;
+                        padding: 8px 16px;
+                        margin-top: 10px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        transition: background 0.2s;
+                    ">Save Job</button>
+                </div>`;
+            }
+        }
+
+        // Initial render
+        renderJobs(jlist);
+
+        // Save job functionality
+        document.addEventListener("click", function (e) {
+            if (e.target.classList.contains("save-job-btn")) {
+                const jobData = JSON.parse(e.target.getAttribute("data-job"));
+                let savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+
+                if (!savedJobs.some(j => j.link === jobData.link)) {
+                    savedJobs.push(jobData);
+                    localStorage.setItem("savedJobs", JSON.stringify(savedJobs));
+                    alert("Job saved!");
+                } else {
+                    alert("Job already saved!");
+                }
+            }
+        });
+
+        // Search and filter functionality
+        function searchandfilterInput() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const salary = document.getElementById('salaryFilter').value.toLowerCase();
+
+            const filteredJobs = jlist.filter(job => {
+                const minSalary = parseInt(job.salary.replace(/[^0-9\-]/g, '').split('-')[0]);
+                const matchesQuery = job.position.toLowerCase().includes(query);
+                const matchesSalary = !salary || minSalary >= parseInt(salary);
+                return matchesQuery && matchesSalary;
+            });
+
+            renderJobs(filteredJobs);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', searchandfilterInput);
+        document.getElementById('salaryFilter').addEventListener('change', searchandfilterInput);
+
+        // Back to Top Button Functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const backToTopBtn = document.getElementById("backToTopBtn");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 50) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+            });
+
+            backToTopBtn.addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    </script>
+</body>
+
+</html>
